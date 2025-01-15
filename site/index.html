@@ -137,6 +137,17 @@ a:hover, a:focus {
   color: blue;
 }
 
+button {
+  /*
+  background: none;
+  border: 1px solid var(--accent-color-1);
+  border-radius: var(--medium-border-radius);
+  color: var(--accent-color-1);
+  cursor: pointer;
+  font-size: var(--small-font-size);
+  outline: none;
+    */
+}
 
 .flow > :where(:not(:first-child)) {
   margin-top: var(--flow-space, 1.0em);
@@ -237,14 +248,19 @@ ul > :where(:not(:first-child)) {
         web components.
       </p>
 
-      <gh-stars repo="alanwsmith/gh-stars.alanwsmith.com"></gh-stars>
+      <div class="testing"><button>asdf</button></div>
+        <gh-stars repo="alanwsmith/gh-stars.alanwsmith.com"></gh-stars>
+
       <!--
       <button class="gh-stars-button"></button>
 -->
 
 
 <!-- Place this tag where you want the button to render. -->
+      <!--
 <a class="github-button" href="https://github.com/alanwsmith/gh-stars.alanwsmith.com" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star alanwsmith/gh-stars.alanwsmith.com on GitHub">Star</a>
+-->
+
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
     </main>
@@ -254,6 +270,7 @@ ul > :where(:not(:first-child)) {
         made by <a href="https://www.alanwsmith.com">alan w smith</a>
       </div>
       <div>
+        <a href="https://github.com/alanwsmith/gh-stars.alanwsmith.com">source code</a> ~
         <a href="https://links.alanwsmith.com">other projects</a>
       </div>
     </footer>
