@@ -8,13 +8,14 @@ class GitHubStars extends HTMLElement {
     this.repo = this.getAttribute('repo')
     if (this.repo !== null) {
       this.getColors()
-      this.url = `https://github.com/${this.repo}`
+      this.siteURL = `https://github.com/${this.repo}`
+      this.apiURL = `https://api.github.com/repos/${this.repo}`
       const content = this.template().content.cloneNode(true)
       const buttonNodes = content.querySelectorAll('button')
       const buttonEls = [...buttonNodes]
       buttonEls.forEach((button) => {
         button.addEventListener('click', (event) => {
-          window.open(this.url, '_blank')
+          window.open(this.siteURL, '_blank')
           console.log(this.repo)
         })
       })
@@ -30,7 +31,15 @@ class GitHubStars extends HTMLElement {
 
   async getCount() {
     const countButton = this.shadowRoot.querySelector(".count-button")
-    countButton.innerHTML = "+1"
+    let response = await fetch(this.apiURL)
+    if (!response.ok) {
+      countButton.innerHTML = "+1"
+      throw new Error('There was a problem getting the data')
+    } else {
+      this.gitHubJson = await response.json()
+      // TODO: Figure out how to do error handling here
+      countButton.innerHTML = this.gitHubJson.stargazers_count
+    }
   }
 
   template() {
@@ -91,7 +100,7 @@ div {
 }
 
 </style>
-<div><button class="logo-button"></button><button class="count-button"></button></div>
+<div><button class="logo-button"></button><button class="count-button">|</button></div>
 `
     return template
   }
