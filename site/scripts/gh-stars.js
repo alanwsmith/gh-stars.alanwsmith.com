@@ -6,13 +6,8 @@ class GitHubStars extends HTMLElement {
 
   connectedCallback() {
     this.repo = this.getAttribute('repo')
-    const foregroundCheck = this.dataset.foreground
-    if (!foregroundCheck) {
-      this.foregroundColor = "black"
-    } else {
-      this.foregroundColor = "red"
-    }
     if (this.repo !== null) {
+      this.getColors()
       this.url = `https://github.com/${this.repo}`
       const content = this.template().content.cloneNode(true)
       const buttonNodes = content.querySelectorAll('button')
@@ -28,6 +23,11 @@ class GitHubStars extends HTMLElement {
     }
   }
 
+  getColors() {
+    this.foregroundColor = this.dataset.foreground ? this.dataset.foreground : "black"
+    this.backgroundColor = this.dataset.background ? this.dataset.background : "white"
+  }
+
   async getCount() {
     const countButton = this.shadowRoot.querySelector(".count-button")
     countButton.innerHTML = "+1"
@@ -38,8 +38,11 @@ class GitHubStars extends HTMLElement {
     template.innerHTML = `
 <style>
 .logo-button {
-  background: white;
+  background: ${this.backgroundColor};
   border: 0;
+  border-top: 1px solid ${this.foregroundColor};
+  border-bottom: 1px solid ${this.foregroundColor};
+  border-left: 1px solid ${this.foregroundColor};
   border-top-left-radius: 0.2rem;
   border-bottom-left-radius: 0.2rem;
   cursor: pointer;
@@ -66,9 +69,12 @@ class GitHubStars extends HTMLElement {
 }
 
 .count-button {
-  background: white;
-  color: black;
+  background: ${this.backgroundColor};
+  color: ${this.foregroundColor};
   border: 0;
+  border-top: 1px solid ${this.foregroundColor};
+  border-bottom: 1px solid ${this.foregroundColor};
+  border-right: 1px solid ${this.foregroundColor};
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem;
   cursor: pointer;
