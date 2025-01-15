@@ -6,6 +6,12 @@ class GitHubStars extends HTMLElement {
 
   connectedCallback() {
     this.repo = this.getAttribute('repo')
+    const foregroundCheck = this.dataset.foreground
+    if (!foregroundCheck) {
+      this.foregroundColor = "black"
+    } else {
+      this.foregroundColor = "red"
+    }
     if (this.repo !== null) {
       this.url = `https://github.com/${this.repo}`
       const content = this.template().content.cloneNode(true)
@@ -45,7 +51,7 @@ class GitHubStars extends HTMLElement {
 }
 
 .logo-button:after {
-  background: black;
+  background: ${this.foregroundColor};
   content: "";
   height: 100%;
   left: 0;
