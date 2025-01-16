@@ -106,4 +106,4 @@ div {
   }
 }
 
-customElements.define('gh-stars', GitHubStars)
+customElements.define('github-stars', GitHubStars)

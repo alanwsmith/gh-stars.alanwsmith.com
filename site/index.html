@@ -17,10 +17,10 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:description" content="My web component for seeing how many stars a repo has" />
     <meta property="og:title" content="Alan's GitHub Stars Web Component" />
-    <meta property="og:url" content="https://gh-stars.alanwsmith.com/" />
-    <meta property="og:image" content="https://gh-stars.alanwsmith.com/images/og-image.jpg" />
+    <meta property="og:url" content="https://github-stars.alanwsmith.com/" />
+    <meta property="og:image" content="https://github-stars.alanwsmith.com/images/og-image.jpg" />
 
-    <link rel="stylesheet" href="/styles/gh-stars.css" />
+    <link rel="stylesheet" href="/styles/github-stars.css" />
 
     <!--
     <script type="module" src="/scripts/yt-player.js"></script>
@@ -231,7 +231,8 @@ ul > :where(:not(:first-child)) {
   <body>
     <header>
       <a href="https://www.alanwsmith.com/">alanwsmith.com</a> ~
-      <a href="https://links.alanwsmith.com/">other projects</a>
+      <a href="https://links.alanwsmith.com/">other projects</a> ~
+      <a href="https://socials.alanwsmith.com/">socials</a>
     </header>
 
     <main class="flow"> 
@@ -248,27 +249,21 @@ ul > :where(:not(:first-child)) {
         web components.
       </p>
 
+      <p>
+        I'll do a write-up on this when everything is finished. 
+        For now, you can take a look at the 
+        <a href="https://github.com/alanwsmith/github-stars.alanwsmith.com">GitHub Stars Web Component source repo</a>
+        to see how it works.
+      </p>
+
       <div>
-        <gh-stars 
-          repo="alanwsmith/gh-stars.alanwsmith.com"
+        <github-stars 
+          repo="alanwsmith/github-stars.alanwsmith.com"
           data-foreground="red"
           data-background="var(--accent-color-1)"
-        ></gh-stars>
-        <gh-stars></gh-stars>
+        ></github-stars>
       </div>
 
-      <!--
-      <button class="gh-stars-button"></button>
--->
-
-
-<!-- Place this tag where you want the button to render. -->
-      <!--
-<a class="github-button" href="https://github.com/alanwsmith/gh-stars.alanwsmith.com" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star alanwsmith/gh-stars.alanwsmith.com on GitHub">Star</a>
--->
-
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
     </main>
 
     <footer>
@@ -276,10 +271,11 @@ ul > :where(:not(:first-child)) {
         made by <a href="https://www.alanwsmith.com">alan w smith</a>
       </div>
       <div>
-        <a href="https://github.com/alanwsmith/gh-stars.alanwsmith.com">source code</a> ~
-        <a href="https://links.alanwsmith.com">other projects</a>
+        <a href="https://github.com/alanwsmith/github-stars.alanwsmith.com">source code</a> ~
+        <a href="https://links.alanwsmith.com">other projects</a> ~
+        <a href="https://socials.alanwsmith.com/">socials</a>
       </div>
     </footer>
-    <script type="module" src="/scripts/gh-stars.js"></script>
+    <script type="module" src="/scripts/github-stars.js"></script>
   </body>
 </html>
