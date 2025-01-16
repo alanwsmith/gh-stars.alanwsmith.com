@@ -12,16 +12,19 @@
     <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
     <meta name="theme-color" content="#000000" />
 
-    <title>Alan's HTML Template</title>
-    <meta name="description" content="My HTML template for staring a new site" />
+    <title>Alan's GitHub Stars Web Component</title>
+    <meta name="description" content="My web component for seeing how many stars a repo has" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:description" content="My HTML template for starting a new site" />
-    <meta property="og:title" content="Alan's HTML Template" />
-    <meta property="og:url" content="https://html-template.alanwsmith.com/" />
-    <meta property="og:image" content="https://html-template.alanwsmith.com/images/og-image.jpg" />
+    <meta property="og:description" content="My web component for seeing how many stars a repo has" />
+    <meta property="og:title" content="Alan's GitHub Stars Web Component" />
+    <meta property="og:url" content="https://gh-stars.alanwsmith.com/" />
+    <meta property="og:image" content="https://gh-stars.alanwsmith.com/images/og-image.jpg" />
 
-    <link rel="stylesheet" href="/styles/yt-player.css" />
+    <link rel="stylesheet" href="/styles/gh-stars.css" />
+
+    <!--
     <script type="module" src="/scripts/yt-player.js"></script>
+-->
 
     <style>
 
@@ -34,6 +37,10 @@
   --reverse-color: #eee;
   --text-color: #aaa;
   --title-color: #234;
+  --button-background-color: var(--accent-color-2);
+  --button-border-color: var(--accent-color-1);
+  --button-color: var(--accent-color-1);
+  --button-border-radius: 0.4rem;
 
   --xxsmall-margin: 0.1rem;
   --xsmall-margin: 0.3rem;
@@ -131,6 +138,7 @@ a:hover, a:focus {
 }
 
 button {
+  /*
   background: none;
   border: 1px solid var(--accent-color-1);
   border-radius: var(--medium-border-radius);
@@ -138,6 +146,7 @@ button {
   cursor: pointer;
   font-size: var(--small-font-size);
   outline: none;
+    */
 }
 
 .flow > :where(:not(:first-child)) {
@@ -199,19 +208,10 @@ img {
 }
 
 main {
-  align-items: center;
-  display: grid;
-  grid-template-columns: 1fr;
   margin-inline: auto;
   padding-bottom: var(--xlarge-padding);
   width: var(--large-width);
 }
-
-/* uncomment to center horizontally
-main {
-  justify-items: center;
-}
-*/
 
 .red {
   color: red;
@@ -230,66 +230,45 @@ ul > :where(:not(:first-child)) {
  
   <body>
     <header>
-      <p>This is the header</p>
+      <a href="https://www.alanwsmith.com/">alanwsmith.com</a> ~
+      <a href="https://links.alanwsmith.com/">other projects</a>
     </header>
 
     <main class="flow"> 
       <hgroup>
-        <h1>Alan's HTML Template</h1>
-        <p>A copy/paste way to start a new site</p>
+        <h1>Alan's GitHub Stars Web Component</h1>
       </hgroup>
-      <h2>Introduction</h2>
-      <p>I like using sub-domains for experiments. 
-        You can check them out at <a href="https://links.alanwsmith.com/">links.alanwsmith.com</a>.
-        This page and
-        its supporting files are my current template for getting
-        started with a new one.
-      </p>
       <p>
-        Most of the sites start off as 
-        single pages. I include the styles and scripts in the 
-        page directly as a result. 
-      </p>
-      <h2>Work-In-Progress</h2>
-      <p>
-        The first version of this template is still under development.
-        Current work is focused on the youtube embedding web component
-        which will reside here: 
-        <a href="https://yt-player.alanwsmith.com/">yt-player.alanwsmith.com</a>
+        Future Post:
+        This project wasn't super necessary. The 
+        <a href="https://buttons.github.io/">GitHub buttons page</a> exists and provides
+        the functionality. But, I link learning new things.
+        The limited scope of getting stars and showing 
+        them made this a great project for playing with
+        web components.
       </p>
 
-      <h2>YouTube Embed Example</h2>
-      <yt-player video="EzPZ9VCCRmU">
-        <noscript>JavaScript not available to load video player</noscript>
-      </yt-player>
+      <div>
+        <gh-stars 
+          repo="alanwsmith/gh-stars.alanwsmith.com"
+          data-foreground="red"
+          data-background="var(--accent-color-1)"
+        ></gh-stars>
+        <gh-stars></gh-stars>
+      </div>
 
-      <h2>Notes</h2>
-      <ul>
-        <li>
-          The main content area is centered vertically if it's 
-          not large enough to fill the screen
-        </li>
-        <li>
-          The page includes the YouTube IFrame API for loading videos
-          programmatically. It doesn't attempt to auto-start. 
-        </li>
-        <li>
-          TODO: The YouTube embed can be used with multiple videos
-          on the page
-        </li>
-        <li>
-          TODO: The YouTube embed automatically adds control buttons
-        </li>
-        <li>
-          TODO: Provide a light/dark mode color switcher
-        </li>
-        <li>
-          TODO: Responsive images
-        </li>
-        <li>
-          Include yt-player web component
-        </li>
-      </ul>
+      <!--
+      <button class="gh-stars-button"></button>
+-->
+
+
+<!-- Place this tag where you want the button to render. -->
+      <!--
+<a class="github-button" href="https://github.com/alanwsmith/gh-stars.alanwsmith.com" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star alanwsmith/gh-stars.alanwsmith.com on GitHub">Star</a>
+-->
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
     </main>
 
     <footer>
@@ -297,8 +276,10 @@ ul > :where(:not(:first-child)) {
         made by <a href="https://www.alanwsmith.com">alan w smith</a>
       </div>
       <div>
-        <a href="https://links.alanwsmith.com">other sites</a>
+        <a href="https://github.com/alanwsmith/gh-stars.alanwsmith.com">source code</a> ~
+        <a href="https://links.alanwsmith.com">other projects</a>
       </div>
     </footer>
+    <script type="module" src="/scripts/gh-stars.js"></script>
   </body>
 </html>
