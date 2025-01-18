@@ -126,6 +126,12 @@ class GitHubStars extends HTMLElement {
   min-width: 2.3rem;
   position: relative;
 }
+
+.count-button:hover {
+  background: ${this.colors['text-color']};
+  color: ${this.colors['background-color']};
+}
+
 `);
     this.shadowRoot.adoptedStyleSheets.push(styles);
   }
