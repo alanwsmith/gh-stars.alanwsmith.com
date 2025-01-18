@@ -20,8 +20,6 @@
     <meta property="og:url" content="https://github-stars.alanwsmith.com/" />
     <meta property="og:image" content="https://github-stars.alanwsmith.com/images/og-image.jpg" />
 
-    <link rel="stylesheet" href="/styles/github-stars.css" />
-
     <!--
     <script type="module" src="/scripts/yt-player.js"></script>
 -->
@@ -239,6 +237,7 @@ ul > :where(:not(:first-child)) {
       <hgroup>
         <h1>Alan's GitHub Stars Web Component</h1>
       </hgroup>
+      <!--
       <p>
         Future Post:
         This project wasn't super necessary. The 
@@ -248,21 +247,61 @@ ul > :where(:not(:first-child)) {
         them made this a great project for playing with
         web components.
       </p>
+-->
 
+      <h2>Work-In-Progress</h2>
       <p>
-        I'll do a write-up on this when everything is finished. 
-        For now, you can take a look at the 
+        This project is still under development. 
+        I'll do a write-up when everything is finished. 
+        Check out
         <a href="https://github.com/alanwsmith/github-stars.alanwsmith.com">GitHub Stars Web Component source repo</a>
-        to see how it works.
+        if you want to see how things work in the mean time.
       </p>
 
+      <hr />
+
+      <h3>Unstyled Test</h3>
       <div>
-        <github-stars 
-          repo="alanwsmith/github-stars.alanwsmith.com"
-          data-foreground="red"
-          data-background="var(--accent-color-1)"
+        <github-stars
+          :repo="alanwsmith/github-stars.alanwsmith.com"
         ></github-stars>
       </div>
+
+      <h3>Explicit CSS Values</h3>
+      <div>
+        <github-stars
+          :repo="alanwsmith/github-stars.alanwsmith.com"
+          :text-color="blue"
+          :background-color="red"
+        ></github-stars>
+      </div>
+
+      <h3>CSS Variables From Parent CSS</h3>
+      <div>
+        <github-stars
+          :repo="alanwsmith/github-stars.alanwsmith.com"
+          :text-color="var(--accent-color-2)"
+          :background-color="var(--accent-color-1)"
+        ></github-stars>
+      </div>
+
+      <hr />
+
+
+      <h2>TODO</h2>
+      <ul>
+        <li>
+          Cache the number for a while to reduce
+          API issues
+        </li>
+        <li>
+          Look into making both buttons change
+          color on hover. Or, figure out how 
+          to get the mask to work with a 
+          single button where you can still
+          see the text
+        </li>
+      </ul>
 
     </main>
 

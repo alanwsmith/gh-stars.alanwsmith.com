@@ -4,29 +4,52 @@ class GitHubStars extends HTMLElement {
     this.attachShadow({mode: 'open'})
   }
 
-  connectedCallback() {
-    this.repo = this.getAttribute('repo')
-    if (this.repo !== null) {
-      this.getColors()
-      this.siteURL = `https://github.com/${this.repo}`
-      this.apiURL = `https://api.github.com/repos/${this.repo}`
-      const content = this.template().content.cloneNode(true)
-      const buttonNodes = content.querySelectorAll('button')
-      const buttonEls = [...buttonNodes]
-      buttonEls.forEach((button) => {
-        button.addEventListener('click', (event) => {
-          window.open(this.siteURL, '_blank')
-          console.log(this.repo)
-        })
+  addButtonListeners() {
+    const buttonNodes = this.shadowRoot.querySelectorAll('button')
+    const buttonEls = [...buttonNodes]
+    buttonEls.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        window.open(this.siteURL, '_blank')
+        console.log(this.repo)
       })
+    })
+  }
+
+  connectedCallback() {
+    this.getAttributes()
+    if (this.attrs.repo !== undefined) {
+      this.siteURL = `https://github.com/${this.attrs.repo}`
+      this.apiURL = `https://api.github.com/repos/${this.attrs.repo}`
+      this.getColors()
+      this.setStyles()
+      const content = this.template().content.cloneNode(true)
       this.shadowRoot.appendChild(content)
-      this.getCount()
+      this.addButtonListeners()
+      // this.getCount()
     }
   }
 
+  getAttributes() {
+    this.attrs = {}
+    const attrs = this.getAttributeNames()
+    attrs.forEach((attr) => {
+      if (attr.startsWith(':') === true) {
+        this.attrs[attr.substring(1)] = 
+          this.getAttribute(attr)
+      }
+    })
+  }
+
   getColors() {
-    this.foregroundColor = this.dataset.foreground ? this.dataset.foreground : "black"
-    this.backgroundColor = this.dataset.background ? this.dataset.background : "white"
+    this.colors = {
+      'text-color': 'black',
+      'background-color': 'white'
+    }
+    for (let color in this.colors) {
+      if (this.attrs[color] !== undefined) {
+        this.colors[color] = this.attrs[color]
+      }
+    }
   }
 
   async getCount() {
@@ -45,16 +68,27 @@ class GitHubStars extends HTMLElement {
   template() {
     const template = this.ownerDocument.createElement('template')
     template.innerHTML = `
-<style>
+<button class="logo-button"></button>
+<button class="count-button">+1</button>
+`
+    return template
+  }
+
+  setStyles() {
+    const styles = new CSSStyleSheet();
+    styles.replaceSync(`
+:host { 
+  display: inline-flex;
+}
+
 .logo-button {
-  background: ${this.backgroundColor};
+  background: ${this.colors['background-color']};
   border: 0;
-  border-top: 1px solid ${this.foregroundColor};
-  border-bottom: 1px solid ${this.foregroundColor};
-  border-left: 1px solid ${this.foregroundColor};
+  border-top: 1px solid ${this.colors['text-color']};
+  border-bottom: 1px solid ${this.colors['text-color']};
+  border-left: 1px solid ${this.colors['text-color']};
   border-top-left-radius: 0.2rem;
   border-bottom-left-radius: 0.2rem;
-  cursor: pointer;
   height: 1.3rem;
   margin: 0;
   padding: 0;
@@ -63,7 +97,7 @@ class GitHubStars extends HTMLElement {
 }
 
 .logo-button:after {
-  background: ${this.foregroundColor};
+  background: ${this.colors['text-color']};
   content: "";
   height: 100%;
   left: 0;
@@ -78,15 +112,14 @@ class GitHubStars extends HTMLElement {
 }
 
 .count-button {
-  background: ${this.backgroundColor};
-  color: ${this.foregroundColor};
+  background: ${this.colors['background-color']};
+  color: ${this.colors['text-color']};
   border: 0;
-  border-top: 1px solid ${this.foregroundColor};
-  border-bottom: 1px solid ${this.foregroundColor};
-  border-right: 1px solid ${this.foregroundColor};
+  border-top: 1px solid ${this.colors['text-color']};
+  border-bottom: 1px solid ${this.colors['text-color']};
+  border-right: 1px solid ${this.colors['text-color']};
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem;
-  cursor: pointer;
   height: 1.3rem;
   margin: 0;
   padding-right: 0.3;
@@ -94,15 +127,13 @@ class GitHubStars extends HTMLElement {
   position: relative;
 }
 
-div {
-  display: flex;
-  min-width: 5rem;
+.count-button:hover {
+  background: ${this.colors['text-color']};
+  color: ${this.colors['background-color']};
 }
 
-</style>
-<div><button class="logo-button"></button><button class="count-button">|</button></div>
-`
-    return template
+`);
+    this.shadowRoot.adoptedStyleSheets.push(styles);
   }
 }
 
