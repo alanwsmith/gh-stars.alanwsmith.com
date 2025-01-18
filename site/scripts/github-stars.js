@@ -25,7 +25,7 @@ class GitHubStars extends HTMLElement {
       const content = this.template().content.cloneNode(true)
       this.shadowRoot.appendChild(content)
       this.addButtonListeners()
-      // this.getCount()
+      this.getCount()
     }
   }
 
