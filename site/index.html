@@ -20,8 +20,6 @@
     <meta property="og:url" content="https://github-stars.alanwsmith.com/" />
     <meta property="og:image" content="https://github-stars.alanwsmith.com/images/og-image.jpg" />
 
-    <link rel="stylesheet" href="/styles/github-stars.css" />
-
     <!--
     <script type="module" src="/scripts/yt-player.js"></script>
 -->
@@ -256,11 +254,28 @@ ul > :where(:not(:first-child)) {
         to see how it works.
       </p>
 
+      <h4>Unstyled Test</h4>
       <div>
-        <github-stars 
-          repo="alanwsmith/github-stars.alanwsmith.com"
-          data-foreground="red"
-          data-background="var(--accent-color-1)"
+        <github-stars
+          :repo="alanwsmith/github-stars.alanwsmith.com"
+        ></github-stars>
+      </div>
+
+      <h4>Explicit CSS Values</h4>
+      <div>
+        <github-stars
+          :repo="alanwsmith/github-stars.alanwsmith.com"
+          :text-color="blue"
+          :background-color="red"
+        ></github-stars>
+      </div>
+
+      <h4>CSS Variables From Parent CSS</h4>
+      <div>
+        <github-stars
+          :repo="alanwsmith/github-stars.alanwsmith.com"
+          :text-color="var(--accent-color-2)"
+          :background-color="var(--accent-color-1)"
         ></github-stars>
       </div>
 
